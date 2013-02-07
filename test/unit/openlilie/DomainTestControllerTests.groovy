@@ -5,6 +5,7 @@ package openlilie
 import org.junit.*
 import grails.test.mixin.*
 
+
 @TestFor(DomainTestController)
 @Mock(DomainTest)
 class DomainTestControllerTests {
