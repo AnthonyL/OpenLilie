@@ -25,9 +25,13 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-            pooled = true
+			pooled = true
+			driverClassName = "com.mysql.jdbc.Driver"
+			dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+			dbCreate = "update"
+			url = "[[jdbc:cloudbees://OpenlilieBase]]"
+			username = "openlilie"
+			password = "lastisi"     
             properties {
                maxActive = -1
                minEvictableIdleTimeMillis=1800000

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<resource name="jdbc/openliliebase" auth="Container" type="javax.sql.DataSource">
- <param name="username" value="openlilie" />
- <param name="password" value="lastisi" />
- <param name="url" value="jdbc:cloudbees://openliliebase" />
-</resource>
