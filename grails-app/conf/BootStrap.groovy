@@ -1,3 +1,4 @@
+import org.data.ModuleENT
 import org.data.User
 import org.security.Authority
 import org.security.AuthPersonAuthority
@@ -18,6 +19,9 @@ class BootStrap {
 		AuthPersonAuthority.create thierryUser, projectOwnerRole
 		AuthPersonAuthority.create sebUser, projectUserRole
 		AuthPersonAuthority.create loisUser, projectUserRole
+		
+		def moduleENT1 = new ModuleENT(title: "module ENT 1", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)
+		def moduleENT2 = new ModuleENT(title: "module ENT 2", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)
     }
     def destroy = {
     }
