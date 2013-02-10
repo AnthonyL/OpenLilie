@@ -3,10 +3,6 @@ package org.data
 import org.data.ModuleENT;
 import org.hibernate.tuple.VersionProperty;
 class ModuleENTService {
-
-    def serviceMethod() {
-
-    }
 	
 	/**
 	 * Crée un nouveau ModuleEnt en base.
