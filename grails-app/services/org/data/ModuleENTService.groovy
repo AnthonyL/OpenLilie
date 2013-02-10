@@ -41,4 +41,11 @@ class ModuleENTService {
 		ModuleENT instance = ModuleENT.get(id);
 		instance.delete(flush:true);
 	}
+	
+	ModuleENT assignation(Long id, Long projectOwnerId) {
+		ModuleENT instance = ModuleENT.get(id);
+		instance.projectOwner = User.get(projectOwnerId);
+		instance.save(flush:true)
+		return instance
+	}
 }
