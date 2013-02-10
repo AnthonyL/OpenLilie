@@ -10,5 +10,16 @@ import org.junit.*
  */
 @TestFor(User)
 class UserTests {
+	
+	def void testCreate() {
+		def myUser = new User(username:"user", password:"pass", fullName:"userName", enabled:true)
+		assertTrue(myUser.username.equals("user"))
+		assertTrue(myUser.password.equals("pass"))
+		assertTrue(myUser.fullName.equals("userName"))
+		assertTrue(myUser.enabled.equals(true))
+		assertTrue(myUser.accountExpired.equals(false))
+		assertTrue(myUser.accountLocked.equals(false))
+		assertTrue(myUser.passwordExpired.equals(false))
+	}
 
 }
