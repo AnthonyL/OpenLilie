@@ -24,6 +24,14 @@ class LoginController {
 	 * Dependency injection for the springSecurityService.
 	 */
 	def springSecurityService
+	
+	def connection = {
+		redirect action: 'grailsIndex'
+	}
+	
+	def grailsIndex = {
+		render view: '/index'
+	}
 
 	/**
 	 * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
