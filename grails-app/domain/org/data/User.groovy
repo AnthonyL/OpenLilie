@@ -8,4 +8,9 @@ class User extends AuthPerson {
 
     static constraints = {
     }
+	
+	@Override
+	public String toString() {
+		return fullName
+	}
 }

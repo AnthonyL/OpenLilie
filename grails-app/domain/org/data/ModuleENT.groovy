@@ -11,4 +11,9 @@ class ModuleENT {
 		createur (nullable : true)
 		projectOwner (nullable : true)
     }
+	
+	@Override
+	public String toString() {
+		return title
+	}
 }

@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="createur-label" class="property-label"><g:message code="moduleENT.createur.label" default="Createur" /></span>
 					
-						<span class="property-value" aria-labelledby="createur-label"><g:link controller="user" action="show" id="${moduleENTInstance?.createur?.id}">${moduleENTInstance?.createur?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="createur-label">${moduleENTInstance?.createur?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -45,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="projectOwner-label" class="property-label"><g:message code="moduleENT.projectOwner.label" default="Project Owner" /></span>
 					
-						<span class="property-value" aria-labelledby="projectOwner-label"><g:link controller="user" action="show" id="${moduleENTInstance?.projectOwner?.id}">${moduleENTInstance?.projectOwner?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="projectOwner-label">${moduleENTInstance?.projectOwner?.encodeAsHTML()}</span>
 					
 				</li>
 				</g:if>
@@ -55,6 +55,7 @@
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${moduleENTInstance?.id}" />
 					<g:link class="edit" action="edit" id="${moduleENTInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="assignation" action="assignation" id="${moduleENTInstance?.id}">Assignation</g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
