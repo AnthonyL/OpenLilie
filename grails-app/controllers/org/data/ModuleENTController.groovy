@@ -1,6 +1,7 @@
 package org.data
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.data.User
 
 class ModuleENTController {
 
@@ -23,10 +24,9 @@ class ModuleENTController {
     def save() {
 		// Récupération des paramètres de la requête
 		String title = params.title;
-		Long createurId = params.createur.id ? null : Long.parseLong(params.createur.id);
-		Long projectOwnerId = params.projectOwner.id ? null : Long.parseLong(params.projectOwner.id);
+
 		// Appel au service de création
-		ModuleENT moduleInstance = moduleENTService.create(title, createurId, projectOwnerId);
+		ModuleENT moduleInstance = moduleENTService.create(title);
 		// S'il y a des erreur sur le module, c'est qu'il n'a pas été sauvegardé
         if (moduleInstance.hasErrors()) {
             render(view: "create", model: [moduleENTInstance: moduleInstance])
@@ -84,10 +84,8 @@ class ModuleENTController {
 		
 		// Récupération des paramètres de la requête
 		String title = params.title;
-		Long createurId = params.createur.id ? null : Long.parseLong(params.createur.id);
-		Long projectOwnerId = params.projectOwner.id ? null : Long.parseLong(params.projectOwner.id);
 		
-		if(moduleENTService.update(title, createurId,  projectOwnerId, version, id).hasErrors()){
+		if(moduleENTService.update(title, version, id).hasErrors()){
 			def moduleENTInstance = ModuleENT.get(id)
 			render(view: "edit", model: [moduleENTInstance: moduleENTInstance])
 			return
@@ -115,4 +113,16 @@ class ModuleENTController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def assignation(Long id){
+		def listProjectOwner = User.createCriteria().list {
+			authority{eq("authority", "ROLE_PROJECTOWNER")}
+		}
+		[moduleENTInstance: ModuleENT.get(id), listProjectOwner: listProjectOwner]
+	}
+	
+	def affectation(Long moduleENTId){
+		moduleENTService.assignation(moduleENTId, Long.valueOf(params.projectOwner.id))
+		redirect(action:"show", id: moduleENTId)
+	}
 }
