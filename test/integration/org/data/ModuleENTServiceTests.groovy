@@ -16,5 +16,17 @@ class ModuleENTServiceTests {
         ModuleENT instance;
 		instance = moduleENTService.create("un titre reconnaissable");
 		assert (instance.hasErrors() == false);
+		
+		// test les limites intérieures de la contraintes de taille
+		instance = moduleENTService.create("u");
+		assert (instance.hasErrors() == true);
+		instance = moduleENTService.create("un");
+		assert (instance.hasErrors() == false);
+		
+		// test les limites supérieurs de la contraintes de taille
+		instance = moduleENTService.create("un titre de 30 caractèreioioi");
+		assert (instance.hasErrors() == false);
+		instance = moduleENTService.create("un titre de 31 caractèresioioi");
+		assert (instance.hasErrors() == false);
     }
 }
