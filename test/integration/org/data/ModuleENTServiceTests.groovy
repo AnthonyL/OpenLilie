@@ -12,30 +12,31 @@ import org.junit.*
 class ModuleENTServiceTests extends GroovyTestCase {
 
     void testAll() {
+		def currentUser = User.findByFullName("Anthony Letourneur")
 		
 		// create
     	def moduleENTService = new ModuleENTService();
         ModuleENT instance;
-		instance = moduleENTService.create("un titre reconnaissable");
+		instance = moduleENTService.create("un titre reconnaissable", currentUser);
 		assert (instance.hasErrors() == false);
 		
-		instance = moduleENTService.create("u");
+		instance = moduleENTService.create("u", currentUser);
 		assert (instance.hasErrors() == true);
 		assert (ModuleENT.get(instance.id) == null);
-		instance = moduleENTService.create("un");
+		instance = moduleENTService.create("un", currentUser);
 		assert (instance.hasErrors() == false);
 		assert (ModuleENT.get(instance.id) != null);
 		
-		instance = moduleENTService.create("un titre de 30 caractèreioioie");
+		instance = moduleENTService.create("un titre de 30 caractèreioioie", currentUser);
 		assert (instance.hasErrors() == false);
 		assert (ModuleENT.get(instance.id) != null);
-		instance = moduleENTService.create("un titre de 31 caractèresioioie");
+		instance = moduleENTService.create("un titre de 31 caractèresioioie", currentUser);
 		assert (instance.hasErrors() == true);
 		assert (ModuleENT.get(instance.id) == null);
 		
 		// update
-		instance = moduleENTService.create("un titre reconnaissable1", null, null);
-		instance = moduleENTService.update("un titre reconnaissable2", null, null, instance.getVersion(), instance.getId());
+		instance = moduleENTService.create("un titre reconnaissable1", currentUser);
+		instance = moduleENTService.update("un titre reconnaissable2", instance.getVersion(), instance.getId());
 		assert ("un titre reconnaissable2" == instance.getTitle())
 		
 		// exist

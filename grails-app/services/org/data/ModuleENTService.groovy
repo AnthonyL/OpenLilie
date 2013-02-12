@@ -4,16 +4,13 @@ import org.data.ModuleENT;
 import org.hibernate.tuple.VersionProperty;
 class ModuleENTService {
 	
-	def springSecurityService
-	
 	/**
 	 * Crée un nouveau ModuleEnt en base.
 	 * @param title
 	 * @return {@link ModuleENT}
 	 */
-	ModuleENT create(String title){
-		User createur = User.get(springSecurityService.principal.id)
-		ModuleENT module = new ModuleENT(title: title, createur: createur);
+	ModuleENT create(String title, User currentUser){
+		ModuleENT module = new ModuleENT(title: title, createur: currentUser);
 		module.save(flush:true);
 		module;
 	}
@@ -38,7 +35,7 @@ class ModuleENTService {
 	
 	def delete(Long id){
 		ModuleENT instance = ModuleENT.get(id);
-		instance.delete(flush:true);
+		instance.delete();
 	}
 	
 	ModuleENT assignation(Long id, Long projectOwnerId) {

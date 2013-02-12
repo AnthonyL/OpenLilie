@@ -7,6 +7,7 @@ class ModuleENTController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	def moduleENTService;
+	def springSecurityService
 
     def index() {
         redirect(action: "list", params: params)
@@ -24,9 +25,10 @@ class ModuleENTController {
     def save() {
 		// Récupération des paramètres de la requête
 		String title = params.title;
-
+		User createur = User.get(springSecurityService.principal.id)
+		
 		// Appel au service de création
-		ModuleENT moduleInstance = moduleENTService.create(title);
+		ModuleENT moduleInstance = moduleENTService.create(title, createur);
 		// S'il y a des erreur sur le module, c'est qu'il n'a pas été sauvegardé
         if (moduleInstance.hasErrors()) {
             render(view: "create", model: [moduleENTInstance: moduleInstance])
