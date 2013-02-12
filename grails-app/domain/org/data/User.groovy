@@ -13,4 +13,8 @@ class User extends AuthPerson {
 	public String toString() {
 		return fullName
 	}
+	
+	public boolean isRole(String authority){
+		return this.authorities.toList().first().authority.equals(authority)
+	}
 }
