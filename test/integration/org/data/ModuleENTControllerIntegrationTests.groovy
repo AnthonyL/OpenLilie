@@ -3,7 +3,7 @@ package org.data
 import static org.junit.Assert.*
 import org.junit.*
 
-class ModuleENTControllerTests {
+class ModuleENTControllerIntegrationTests {
 
 	def ModuleENTService
 	void testSave(){
