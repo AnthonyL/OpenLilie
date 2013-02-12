@@ -52,6 +52,13 @@ class ModuleENTServiceTests extends GroovyTestCase {
 		
 		// exist
 		assert(false == moduleENTService.isModuleEntExist(instance.getId()));
+		
+		// assignation
+		def projectOwner = User.findByFullName("Thierry Weissbeck");
+		instance = moduleENTService.create("un module", currentUser);
+		assert(null == instance.projectOwner);
+		moduleENTService.assignation(instance.id, projectOwner.id);
+		assert(null != instance.projectOwner);
+		assert(projectOwner.id != instance.projectOwner);
     }
-	
 }
