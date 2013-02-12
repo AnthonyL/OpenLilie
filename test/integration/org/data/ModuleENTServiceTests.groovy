@@ -10,7 +10,11 @@ import org.junit.*
  */
 @TestFor(ModuleENTService)
 class ModuleENTServiceTests extends GroovyTestCase {
-
+	/**
+	 * Tout est dans la même méthode car l'utilisation de plusieurs méthodes de tests porovoquent des erreurs assez étranges 
+	 * (même dans le cas où les tests sont identiques dans les deux méthodes)
+	 */
+	@Test
     void testAll() {
 		
 		// create
@@ -48,4 +52,5 @@ class ModuleENTServiceTests extends GroovyTestCase {
 		// exist
 		assert(false == moduleENTService.isModuleEntExist(instance.getId()));
     }
+	
 }
