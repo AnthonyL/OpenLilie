@@ -7,7 +7,7 @@ class ModuleENT {
 	User projectOwner;
 	
     static constraints = {
-		title (unique : true, size:2..30, blank : false)
+		title (unique : true, nullable : false, size:2..30, blank : false)
 		createur (nullable : true)
 		projectOwner (nullable : true)
     }
