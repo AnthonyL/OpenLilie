@@ -11,8 +11,15 @@
 		<a href="#list-moduleENT" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<sec:ifAllGranted roles="ROLE_GOVERNOR">
+					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				</sec:ifAllGranted>
+				<sec:ifNotLoggedIn>
+					<li><g:link class="login" controller="login" action="connection">Login</g:link></li>
+				</sec:ifNotLoggedIn>
+				<sec:ifLoggedIn>
+					<li><span>${connectFullName} </span><g:link class="logout" controller="logout" action="index">Logout</g:link></li>
+				</sec:ifLoggedIn>
 			</ul>
 		</div>
 		<div id="list-moduleENT" class="content scaffold-list" role="main">

@@ -2,6 +2,7 @@ package org.data
 
 import org.springframework.dao.DataIntegrityViolationException
 import org.data.User
+import org.data.ModuleENT
 
 class ModuleENTController {
 
@@ -14,8 +15,27 @@ class ModuleENTController {
     }
 
     def list(Integer max) {
+		def moduleList
+		def fullName
+		
+		if(springSecurityService.loggedIn){
+			User user = User.get(springSecurityService.principal.id)
+			fullName = user.fullName
+			if(!user.isRole("ROLE_GOVERNOR")){
+				moduleList = ModuleENT.createCriteria().list{
+					eq("projectOwner", user)
+				}
+				println moduleList
+			}else{
+				moduleList = ModuleENT.list()
+			}
+		} else {
+			fullName = ""
+			moduleList = ModuleENT.list()
+		}
+	
         params.max = Math.min(max ?: 10, 100)
-        [moduleENTInstanceList: ModuleENT.list(params), moduleENTInstanceTotal: ModuleENT.count()]
+        [connectFullName: fullName, moduleENTInstanceList: moduleList, moduleENTInstanceTotal: moduleList.size()]
     }
 
     def create() {
