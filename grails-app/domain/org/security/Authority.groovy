@@ -14,4 +14,9 @@ class Authority {
 	static constraints = {
 		authority blank: false, unique: true
 	}
+	
+	@Override
+	public String toString() {
+		return authority
+	}
 }

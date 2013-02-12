@@ -17,7 +17,7 @@ class BootStrap {
 		
 		AuthPersonAuthority.create anthonyUser, governorRole
 		AuthPersonAuthority.create thierryUser, projectOwnerRole
-		AuthPersonAuthority.create sebUser, projectUserRole
+		AuthPersonAuthority.create sebUser, projectOwnerRole
 		AuthPersonAuthority.create loisUser, projectUserRole
 		
 		def moduleENT1 = new ModuleENT(title: "module ENT 1", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)

@@ -97,7 +97,13 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.security.
 grails.plugins.springsecurity.authority.className = 'org.security.Authority'
 grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 grails.plugins.springsecurity.interceptUrlMap = [
-	'/login/connection':  ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/login/grailsIndex': ['ROLE_PROJECTUSER', 'ROLE_PROJECTOWNER', 'ROLE_GOVERNOR']
+	'/login/connection':  ['IS_AUTHENTICATED_FULLY'],
+	'/login/grailsIndex': ['ROLE_PROJECTUSER', 'ROLE_PROJECTOWNER', 'ROLE_GOVERNOR'],
+	'/moduleENT/create':  ['ROLE_GOVERNOR'],
+	'/moduleENT/list':	  ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/moduleENT/edit': 	  ['ROLE_GOVERNOR'],
+	'/moduleENT/assignation': ['ROLE_GOVERNOR'],
+	'/moduleENT/affectation': ['ROLE_GOVERNOR'],
+	'/moduleENT/show':	  ['IS_AUTHENTICATED_ANONYMOUSLY']
 ]
 

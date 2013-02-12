@@ -12,6 +12,7 @@ import org.springframework.security.authentication.LockedException
 import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.data.User
 
 class LoginController {
 
@@ -26,7 +27,7 @@ class LoginController {
 	def springSecurityService
 	
 	def connection = {
-		redirect action: 'grailsIndex'
+		redirect controller:"moduleENT", action: 'list'
 	}
 	
 	def grailsIndex = {

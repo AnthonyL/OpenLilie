@@ -2,19 +2,40 @@ package org.data
 
 import org.springframework.dao.DataIntegrityViolationException
 import org.data.User
+import org.data.ModuleENT
 
 class ModuleENTController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	def moduleENTService;
+	def springSecurityService
 
     def index() {
         redirect(action: "list", params: params)
     }
 
     def list(Integer max) {
+		def moduleList
+		def fullName
+		
+		if(springSecurityService.loggedIn){
+			User user = User.get(springSecurityService.principal.id)
+			fullName = user.fullName
+			if(!user.isRole("ROLE_GOVERNOR")){
+				moduleList = ModuleENT.createCriteria().list{
+					eq("projectOwner", user)
+				}
+				println moduleList
+			}else{
+				moduleList = ModuleENT.list()
+			}
+		} else {
+			fullName = ""
+			moduleList = ModuleENT.list()
+		}
+	
         params.max = Math.min(max ?: 10, 100)
-        [moduleENTInstanceList: ModuleENT.list(params), moduleENTInstanceTotal: ModuleENT.count()]
+        [connectFullName: fullName, moduleENTInstanceList: moduleList, moduleENTInstanceTotal: moduleList.size()]
     }
 
     def create() {
@@ -24,9 +45,10 @@ class ModuleENTController {
     def save() {
 		// Récupération des paramètres de la requête
 		String title = params.title;
-
+		User createur = User.get(springSecurityService.principal.id)
+		
 		// Appel au service de création
-		ModuleENT moduleInstance = moduleENTService.create(title);
+		ModuleENT moduleInstance = moduleENTService.create(title, createur);
 		// S'il y a des erreur sur le module, c'est qu'il n'a pas été sauvegardé
         if (moduleInstance.hasErrors()) {
             render(view: "create", model: [moduleENTInstance: moduleInstance])

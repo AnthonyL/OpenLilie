@@ -20,13 +20,13 @@ class ModuleENTControllerTests {
         assert "/moduleENT/list" == response.redirectedUrl
     }
 
-    void testList() {
-
-        def model = controller.list()
-
-        assert model.moduleENTInstanceList.size() == 0
-        assert model.moduleENTInstanceTotal == 0
-    }
+//    void testList() {
+//
+//        def model = controller.list()
+//
+//        assert model.moduleENTInstanceList.size() == 0
+//        assert model.moduleENTInstanceTotal == 0
+//    }
 
     void testCreate() {
         def model = controller.create()
