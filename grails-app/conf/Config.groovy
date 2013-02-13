@@ -10,6 +10,7 @@
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+import grails.plugins.springsecurity.SecurityConfigType
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -89,3 +90,20 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'org.security.AuthPerson'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.security.AuthPersonAuthority'
+grails.plugins.springsecurity.authority.className = 'org.security.Authority'
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/login/connection':  ['IS_AUTHENTICATED_FULLY'],
+	'/login/grailsIndex': ['ROLE_PROJECTUSER', 'ROLE_PROJECTOWNER', 'ROLE_GOVERNOR'],
+	'/moduleENT/create':  ['ROLE_GOVERNOR'],
+	'/moduleENT/list':	  ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/moduleENT/edit': 	  ['ROLE_GOVERNOR'],
+	'/moduleENT/assignation': ['ROLE_GOVERNOR'],
+	'/moduleENT/affectation': ['ROLE_GOVERNOR'],
+	'/moduleENT/show':	  ['IS_AUTHENTICATED_ANONYMOUSLY']
+]
+

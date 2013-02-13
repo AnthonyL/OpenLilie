@@ -15,6 +15,9 @@ grails.project.dependency.resolution = {
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
 
+	def gebVersion = "0.7.0"
+	def seleniumVersion = "2.25.0"
+	
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
@@ -35,6 +38,16 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
+		test "org.codehaus.geb:geb-spock:$gebVersion"
+		test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
+			excludes "xml-apis","commons-codec","commons-io"
+		}
+		test("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
+		test("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"){
+			excludes "commons-io"
+		}
+		test("org.seleniumhq.selenium:selenium-ie-driver:$seleniumVersion")
+		test "org.codehaus.geb:geb-junit4:$gebVersion"
     }
 
     plugins {
@@ -46,11 +59,18 @@ grails.project.dependency.resolution = {
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.4"
+		
+		test ":spock:0.6"
+		test ":geb:0.6.3"
 
         build ":tomcat:$grailsVersion"
 
         runtime ":database-migration:1.1"
 
         compile ':cache:1.0.0'
+		compile ":codenarc:0.18"
+		compile ":spring-security-core:1.2.7.3"
+		
+		test ":spock:0.7"
     }
 }
