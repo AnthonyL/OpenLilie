@@ -20,6 +20,38 @@ class ModuleENTControllerTests {
         assert "/moduleENT/list" == response.redirectedUrl
     }
 
+	void testShow1(){
+		/*
+		// mock user
+		def anthonyUser = new User(username:"anthony", password:"pass", enabled:true, fullName:"Anthony Letourneur")
+		mockDomain(ModuleENT, [anthonyUser]);
+		
+		def mockSpringSecurityService = mockFor(grails.plugins.springsecurity.SpringSecurityService)
+		//Provide implementation spring security getPrincipal method
+		mockSpringSecurityService.demand.isLoggedIn() { ->
+			true
+		}
+		mockSpringSecurityService.demand.getPrincipal() { ->
+			["username":anthonyUser]
+		}
+		def mockUser = mockFor(org.data.ModuleENT)
+		mockUser.demand.get(){->
+			1
+		}*/
+		def moduleENTService = mockFor(org.data.ModuleENTService);
+		Long l = 20;
+		moduleENTService.demand.isModuleEntExist(l){->
+			return false
+		}
+		
+		def controller = new ModuleENTController();
+		controller.moduleENTService = moduleENTService.createMock()
+		controller.show(l);
+		
+	}
+	
+	
+	
 //    void testList() {
 //
 //        def model = controller.list()
