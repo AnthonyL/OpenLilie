@@ -7,6 +7,7 @@ class User extends AuthPerson {
 	String fullName
 
     static constraints = {
+		fullName (unique : true, nullable : false, size:2..30, blank : false)
     }
 	
 	@Override
