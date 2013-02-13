@@ -7,28 +7,34 @@ class ModuleENTCRUDTests extends GebReportingTest {
 
 	@Test
 	void doSomeCrud() {
+		
+		to LoginPage
+		loginForm.j_username = "anthony"
+		loginForm.j_password = "pass"
+		loginButton.click()
+		
 		to ListPage
 		assert moduleENTRows.size() == 2
 		newModuleENTButton.click()
 		
 		assert at(CreatePage)
-		title = "moduleENT"
+		title2 = "moduleENT"
 		createButton.click()
 		
 		assert at(ShowPage)
-		assert title == "moduleENT"
+		assert title2 == "moduleENT"
 		editButton.click()
 		
 		assert at(EditPage)
-		title = "moduleENT"
+		title2 = "moduleENT"
 		updateButton.click()
 		
 		assert at(ShowPage)
 		
 		to ListPage
 		assert moduleENTRows.size() == 3
-		def row = moduleENTRow(0)
-		assert row.title == "moduleENT"
+		def row = moduleENTRow(2)
+		assert row.title2 == "moduleENT"
 		row.showLink.click()
 		
 		assert at(ShowPage)

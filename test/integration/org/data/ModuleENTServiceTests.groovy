@@ -41,7 +41,7 @@ class ModuleENTServiceTests extends GroovyTestCase {
 		// update
 		instance = moduleENTService.create("un titre reconnaissable1", currentUser);
 		instance = moduleENTService.update("un titre reconnaissable2", instance.getVersion(), instance.getId());
-		assert ("un titre reconnaissable2" == instance.getTitle())
+		assert ("un titre reconnaissable2" == instance.getTitle2())
 		
 		// exist
 		assert(true == moduleENTService.isModuleEntExist(instance.getId()));

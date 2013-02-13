@@ -7,7 +7,20 @@ import pages.*
 @Stepwise
 class ModuleENTCRUDSpec extends GebReportingSpec {
 	
-	def "there are no Modules ENT"() {
+	def "admin login"() {
+       given : "I am at the login page"
+       to LoginPage
+
+       when: "I am entering valid username and password"
+       loginForm.j_username = "anthony"
+       loginForm.j_password = "pass"
+       loginButton.click()
+
+       then: "I am being redirected to the admin homepage"
+       at ListPage
+    }
+	
+	def "there are 2 Modules ENT"() {
 		when:
 		to ListPage
 		then:
@@ -23,7 +36,7 @@ class ModuleENTCRUDSpec extends GebReportingSpec {
 	
 	def "enter the details"() {
 		when:
-		title = "ModuleENT"
+		title2 = "ModuleENT"
 		createButton.click()
 		then:
 		at ShowPage
@@ -31,7 +44,7 @@ class ModuleENTCRUDSpec extends GebReportingSpec {
 	
 	def "check the entered details"() {
 		expect:
-		title == "ModuleENT"
+		title2 == "ModuleENT"
 	}
 
 	def "edit the details"() {
@@ -40,7 +53,7 @@ class ModuleENTCRUDSpec extends GebReportingSpec {
 		then:
 		at EditPage
 		when:
-		enabled = false
+		title2 = "ModuleENT"
 		updateButton.click()
 		then:
 		at ShowPage
@@ -51,13 +64,13 @@ class ModuleENTCRUDSpec extends GebReportingSpec {
 		to ListPage
 		then:
 		moduleENTRows.size() == 3
-		def row = moduleENTRow(0)
-		row.title == "ModuleENT"
+		def row = moduleENTRow(2)
+		row.title2 == "ModuleENT"
 	}
 	
 	def "show moduleENT"() {
 		when:
-		moduleENTRow(0).showLink.click()
+		moduleENTRow(2).showLink.click()
 		then:
 		at ShowPage
 	}

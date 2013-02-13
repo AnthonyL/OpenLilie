@@ -6,11 +6,11 @@ class ModuleENTService {
 	
 	/**
 	 * Crée un nouveau ModuleEnt en base.
-	 * @param title
+	 * @param title2
 	 * @return {@link ModuleENT}
 	 */
-	ModuleENT create(String title, User currentUser){
-		ModuleENT module = new ModuleENT(title: title, createur: currentUser);
+	ModuleENT create(String title2, User currentUser){
+		ModuleENT module = new ModuleENT(title2: title2, createur: currentUser);
 		module.save(flush:true);
 		module;
 	}
@@ -25,9 +25,9 @@ class ModuleENTService {
            
 	}
 	
-	ModuleENT update(String title, Long version, Long id){
+	ModuleENT update(String title2, Long version, Long id){
 		ModuleENT instance = ModuleENT.get(id);
-		instance.title = title;
+		instance.title2 = title2;
 		instance.version = version;
 		instance.save(flush:true)
 		return instance

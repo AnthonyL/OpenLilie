@@ -21,11 +21,11 @@
 			</g:if>
 			<ol class="property-list moduleENT">
 			
-				<g:if test="${moduleENTInstance?.title}">
+				<g:if test="${moduleENTInstance?.title2}">
 				<li class="fieldcontain">
-					<span id="title-label" class="property-label"><g:message code="moduleENT.title.label" default="Title" /></span>
+					<span id="title2-label" class="property-label"><g:message code="moduleENT.title2.label" default="Title" /></span>
 					
-						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${moduleENTInstance}" field="title"/></span>
+						<span class="property-value" aria-labelledby="title2-label"><g:fieldValue bean="${moduleENTInstance}" field="title2"/></span>
 					
 				</li>
 				</g:if>

@@ -44,11 +44,11 @@ class ModuleENTController {
 
     def save() {
 		// Récupération des paramètres de la requête
-		String title = params.title;
+		String title2 = params.title2;
 		User createur = User.get(springSecurityService.principal.id)
 		
 		// Appel au service de création
-		ModuleENT moduleInstance = moduleENTService.create(title, createur);
+		ModuleENT moduleInstance = moduleENTService.create(title2, createur);
 		// S'il y a des erreur sur le module, c'est qu'il n'a pas été sauvegardé
         if (moduleInstance.hasErrors()) {
             render(view: "create", model: [moduleENTInstance: moduleInstance])
@@ -105,9 +105,9 @@ class ModuleENTController {
         }
 		
 		// Récupération des paramètres de la requête
-		String title = params.title;
+		String title2 = params.title2;
 		
-		if(moduleENTService.update(title, version, id).hasErrors()){
+		if(moduleENTService.update(title2, version, id).hasErrors()){
 			def moduleENTInstance = ModuleENT.get(id)
 			render(view: "edit", model: [moduleENTInstance: moduleENTInstance])
 			return

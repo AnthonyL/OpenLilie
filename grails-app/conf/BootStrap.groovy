@@ -20,8 +20,8 @@ class BootStrap {
 		AuthPersonAuthority.create sebUser, projectOwnerRole
 		AuthPersonAuthority.create loisUser, projectUserRole
 		
-		def moduleENT1 = new ModuleENT(title: "module ENT 1", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)
-		def moduleENT2 = new ModuleENT(title: "module ENT 2", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)
+		def moduleENT1 = new ModuleENT(title2: "module ENT 1", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)
+		def moduleENT2 = new ModuleENT(title2: "module ENT 2", createur: anthonyUser, projectOwner: thierryUser).save(failOnError:true)
     }
     def destroy = {
     }

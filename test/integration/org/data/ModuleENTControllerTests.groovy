@@ -20,7 +20,7 @@ class ModuleENTControllerTests {
 		ModuleENT m = ModuleENT.get(1);
 		def model = controller.edit(1);
 		assert model != null;
-		assert model.moduleENTInstance.title == m.title;
+		assert model.moduleENTInstance.title2 == m.title2;
 	}
 	
 }

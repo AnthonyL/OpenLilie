@@ -20,8 +20,8 @@ class ModuleENTTests {
 	   //AuthPersonAuthority.create userCreator, governorRole
 	   //AuthPersonAuthority.create userProjectOwner, projectOwnerRole
 	   
-	   def moduleENTtest = new ModuleENT(title: "module ENT test", createur: userCreator, projectOwner: userProjectOwner)
-	   assertTrue(moduleENTtest.title.equals("module ENT test"))
+	   def moduleENTtest = new ModuleENT(title2: "module ENT test", createur: userCreator, projectOwner: userProjectOwner)
+	   assertTrue(moduleENTtest.title2.equals("module ENT test"))
 	   assertTrue(moduleENTtest.createur.username.equals("creator"))
 	   assertTrue(moduleENTtest.projectOwner.username.equals("projectOwner"))
 	   //assertTrue(moduleENTtest.createur.getAuthorities().equals("ROLE_GOVERNOR"))

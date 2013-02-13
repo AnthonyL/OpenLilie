@@ -15,7 +15,7 @@
 			</ul>
 		</div>
 		<div id="create-moduleENT" class="content scaffold-create" role="main">
-			<h1>Assigner un project owner à ${moduleENTInstance.title }</h1>
+			<h1>Assigner un project owner à ${moduleENTInstance.title2 }</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

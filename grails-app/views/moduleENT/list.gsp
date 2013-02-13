@@ -11,6 +11,7 @@
 		<a href="#list-moduleENT" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<sec:ifAllGranted roles="ROLE_GOVERNOR">
 					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 				</sec:ifAllGranted>
@@ -31,7 +32,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="title" title="${message(code: 'moduleENT.title.label', default: 'Title')}" />
+						<g:sortableColumn property="title2" title="${message(code: 'moduleENT.title2.label', default: 'Title')}" />
 					
 						<th><g:message code="moduleENT.createur.label" default="Createur" /></th>
 					
@@ -43,7 +44,7 @@
 				<g:each in="${moduleENTInstanceList}" status="i" var="moduleENTInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${moduleENTInstance.id}">${fieldValue(bean: moduleENTInstance, field: "title")}</g:link></td>
+						<td><g:link action="show" id="${moduleENTInstance.id}">${fieldValue(bean: moduleENTInstance, field: "title2")}</g:link></td>
 					
 						<td>${fieldValue(bean: moduleENTInstance, field: "createur")}</td>
 					

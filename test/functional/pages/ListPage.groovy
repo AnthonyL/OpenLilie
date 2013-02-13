@@ -1,5 +1,7 @@
 package pages
 
+import org.data.User;
+
 import geb.Module
 
 class ListPage extends ScaffoldPage {
@@ -12,7 +14,7 @@ class ListPage extends ScaffoldPage {
 	static content = {
 		newModuleENTButton(to: CreatePage) { $("a", text: "New ModuleENT") }
 		modulesENTTable { $("div.content table", 0) }
-		moduleENTRow { module moduleENTRow, moduleENTRows[it] }
+		moduleENTRow { module ModuleENTRow, moduleENTRows[it] }
 		moduleENTRows(required: false) { modulesENTTable.find("tbody").find("tr") }
 	}
 }
@@ -22,7 +24,7 @@ class ModuleENTRow extends Module {
 		cell { $("td", it) }
 		cellText { cell(it).text() }
         cellHrefText{ cell(it).find('a').text() }
-		title { cellText(0) }
+		title2 { cellHrefText(0) }
 		showLink(to: ShowPage) { cell(0).find("a") }
 	}
 }

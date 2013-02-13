@@ -11,7 +11,7 @@ class ShowPage extends ScaffoldPage {
 		deleteButton(to: ListPage) { $("input", value: "Delete") }
 		row { $("li.fieldcontain span.property-label", text: it).parent() }
 		value { row(it).find("span.property-value").text() }
-		title { value("ModuleENT") }
+		title2 { value("Title") }
 		
 	}
 }
